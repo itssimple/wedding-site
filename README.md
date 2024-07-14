@@ -3,14 +3,12 @@
 This is the project for the wedding site for Chris and Sol!
 
 Will feature:
-- A countdown to the wedding
 - A gallery of photos
 - A page for the wedding party
 - A page for the registry
 - A page for the venue
 - A page for the schedule
 - A page for the RSVP form
-- A page for the contact form
 - A page for the story of Chris and Sol
 - A page for the FAQ
 - A page for the accommodations
