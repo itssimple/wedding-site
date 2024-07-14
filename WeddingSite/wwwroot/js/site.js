@@ -23,11 +23,11 @@
             timeLeft.push(`${days} ${days != 1 ? "dagar" : "dag"}`);
         }
 
-        if (hours > 0) {
+        if (hours > 0 || days > 0) {
             timeLeft.push(`${hours} ${hours != 1 ? "timmar" : "timme"}`);
         }
 
-        if (minutes > 0) {
+        if (minutes > 0 || hours > 0) {
             timeLeft.push(`${minutes} ${minutes != 1 ? "minuter" : "minut"}`);
         }
 
