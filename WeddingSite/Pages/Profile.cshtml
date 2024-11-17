@@ -1,0 +1,88 @@
+﻿@page
+@model WeddingSite.Pages.ProfileModel
+@{
+    ViewData["Title"] = "Min profil / Anmälan";
+}
+<div class="text-center">
+    <h1 class="display-4 tenor-sans-regular">Min profil / Anmälan</h1>
+    <hr />
+    <h3 class="display-6 tenor-sans-regular">Hej @Model.Guest.FirstName!</h3>
+    <form method="post" class="row rows-cols-lg-auto justify-content-center">
+        <div class="col-4 justify-content-center">
+            @if (Model.Guest.RSVPData != null)
+            {
+                <h4>Din RSVP Information</h4>
+            }
+            else
+            {
+                <h4>Du har inte skickat in din RSVP än</h4>
+            }
+            <hr />
+            <div class="form-check form-check-inline float-start">
+                <input class="form-check-input" type="checkbox" value="true" asp-for="Guest.RSVPData.Attending">
+                <label class="form-check-label" asp-for="Guest.RSVPData.Attending">
+                    Jag (@Model.Guest.FirstName) kommer på bröllopet
+                </label>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.Guest.PlusOne))
+            {
+                <div class="form-check form-check-inline float-start">
+                    <input class="form-check-input" type="checkbox" value="true" asp-for="Guest.RSVPData.PlusOneAttending">
+                    <label class="form-check-label" asp-for="Guest.RSVPData.PlusOneAttending">
+                        @Model.Guest.PlusOne (din +1) kommer på bröllopet
+                    </label>
+                </div>
+            }
+            <div class="clearfix"></div>
+            <hr />
+            <div class="mb-3">
+                <label asp-for="Guest.RSVPData.DietaryRequirements">Meddelande till brudparet</label>
+                <textarea class="form-control" asp-for="Guest.RSVPData.Message" rows="3"></textarea>
+            </div>
+            <hr />
+            <h5>Allergier / Kost</h5>
+            <div class="mb-3">
+                <label asp-for="Guest.RSVPData.DietaryRequirements">Allergier / Viktig info</label>
+                <textarea class="form-control" asp-for="Guest.RSVPData.DietaryRequirements" rows="3"></textarea>
+            </div>
+            @if (string.IsNullOrWhiteSpace(Model.Guest.PlusOne))
+            {
+                <br />
+                <div class="form-check form-check-inline float-start">
+                    <input class="form-check-input" type="radio" value="vegan" id="solo_vegan" asp-for="SoloDietary">
+                    <label class="form-check-label" for="solo_vegan">
+                        Jag är vegan
+                    </label>
+                </div>
+                <div class="form-check form-check-inline float-start">
+                    <input class="form-check-input" type="radio" value="vegetarian" id="solo_vegetarian" asp-for="SoloDietary">
+                    <label class="form-check-label" for="solo_vegetarian">
+                        Jag är vegetarian
+                    </label>
+                </div>
+                <div class="form-check form-check-inline float-start">
+                    <input class="form-check-input" type="radio" value="other" id="solo_other" asp-for="SoloDietary">
+                    <label class="form-check-label" for="solo_other">
+                        Annat (ange i textfältet ovan)
+                    </label>
+                </div>
+            }
+            else
+            {
+                <div class="form-control">
+                    <div class="mb-3">
+                        <label asp-for="Guest.RSVPData.VeganCount">Veganer (antal)</label>
+                        <input class="form-control" type="number" max="2" min="0" asp-for="Guest.RSVPData.VeganCount" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Guest.RSVPData.VegetarianCount">Vegetarianer (antal)</label>
+                        <input class="form-control" type="number" max="2" min="0" asp-for="Guest.RSVPData.VegetarianCount" />
+                    </div>
+                </div>
+            }
+            <div class="clearfix"></div>
+            <hr />
+            <button type="submit" class="btn btn-primary">Skicka RSVP</button>
+        </div>
+    </form>
+</div>
