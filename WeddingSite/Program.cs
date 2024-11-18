@@ -3,10 +3,11 @@ using WeddingSite;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<WeddingContext>(options => 
+builder.Services.AddDbContext<WeddingContext>(options =>
     options
         .UseLazyLoadingProxies()
-        .UseSqlite(builder.Configuration.GetConnectionString("WeddingDatabase")));
+        .UseSqlite(builder.Configuration.GetConnectionString("WeddingDatabase"))
+        .LogTo(Console.WriteLine));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -33,7 +34,7 @@ else
     app.UseDeveloperExceptionPage();
 }
 
-using(var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<WeddingContext>();
