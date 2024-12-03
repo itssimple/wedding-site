@@ -10,15 +10,18 @@
     <p>
         Här kommer du att kunna ange om du kommer eller inte, samt ange övriga uppgifter.
     </p>
-    <form method="post" class="row rows-cols-lg-auto justify-content-center">
-        <div class="col-3 justify-content-center">
-            <div class="row">
+    <form method="post">
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-sm-10">
                 <label asp-for="InviteCode" class="control-label">Fyll i din inbjudningskod (6 tecken)</label>
-                <input asp-for="InviteCode" required class="form-control text-center" maxlength="6" placeholder="000000" />
+                <input asp-for="InviteCode" required class="form-control text-center" maxlength="6" placeholder="ABC123" />
                 <span asp-validation-for="InviteCode" class="text-danger"></span>
                 <br />
-                <button type="submit" class="btn btn-primary">Logga in</button>
+
             </div>
+        </div>
+        <div class="d-grid d-block d-lg-inline-block">
+            <button type="submit" class="btn btn-primary">Logga in</button>
         </div>
     </form>
 </div>
