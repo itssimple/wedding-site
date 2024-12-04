@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+ï»¿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,14 +21,14 @@ namespace WeddingSite.Pages
         {
             if(InviteCode == null || InviteCode.Length < 6)
             {
-                ModelState.AddModelError("InviteCode", "Koden måste vara minst 6 tecken lång");
+                ModelState.AddModelError("InviteCode", "Koden mÃ¥ste vara minst 6 tecken lÃ¥ng");
                 return Page();
             }
 
-            var guest = await db.Guests.FirstOrDefaultAsync(g => g.InviteCode == InviteCode);
+            var guest = await db.Guests.FirstOrDefaultAsync(g => g.InviteCode == InviteCode.ToUpper().Trim());
             if (guest == null)
             {
-                ModelState.AddModelError("InviteCode", "Koden är inte giltig");
+                ModelState.AddModelError("InviteCode", "Koden Ã¤r inte giltig");
                 return Page();
             }
 
