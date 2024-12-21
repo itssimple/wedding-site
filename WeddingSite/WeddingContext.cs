@@ -44,10 +44,9 @@ namespace WeddingSite
         public bool Attending { get; set; }
         public bool PlusOneAttending { get; set; }
         public DateTimeOffset? RSVPDate { get; set; }
-        public int VeganCount { get; set; }
-        public int VegetarianCount { get; set; }
         public int NumberOfGuests { get; set; }
         public string? DietaryRequirements { get; set; }
+        public string? DietaryOptions { get; set; }
         public string? Message { get; set; }
     }
 }

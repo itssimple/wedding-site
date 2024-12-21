@@ -11,6 +11,7 @@ builder.Services.AddDbContext<WeddingContext>(options =>
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddControllers();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -28,10 +29,6 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
-}
-else
-{
-    app.UseDeveloperExceptionPage();
 }
 
 using (var scope = app.Services.CreateScope())
@@ -51,5 +48,7 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapRazorPages();
+
+app.MapControllers();
 
 app.Run();
