@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Primitives;
 
 namespace WeddingSite.Pages
@@ -100,6 +101,8 @@ namespace WeddingSite.Pages
 
             // To get updated data, since we don't update the session after login
             guest = await db.Guests.FirstAsync(g => g.GuestId == guest.GuestId);
+
+            guest.Email = Guest?.Email;
 
             if (Guest?.RSVPData != null)
             {

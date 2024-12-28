@@ -37,7 +37,11 @@
                 <div class="clearfix"></div>
                 <hr />
                 <div class="mb-3">
-                    <label asp-for="Guest.RSVPData.DietaryRequirements">Meddelande till brudparet</label>
+                    <label asp-for="Guest.Email">E-postadress för kommunikation / meddelande från oss</label>
+                    <input type="email" autocomplete="off" class="form-control" asp-for="Guest.Email" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Guest.RSVPData.Message">Meddelande till brudparet</label>
                     <textarea class="form-control" asp-for="Guest.RSVPData.Message" rows="3"></textarea>
                 </div>
                 <hr />
