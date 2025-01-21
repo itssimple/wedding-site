@@ -118,6 +118,7 @@ namespace WeddingSite.Pages
                     guest.RSVPData.NumberOfGuests = Guest.RSVPData.NumberOfGuests;
                     guest.RSVPData.DietaryRequirements = Guest.RSVPData.DietaryRequirements;
                     guest.RSVPData.Message = Guest.RSVPData.Message;
+                    guest.RSVPData.OwnTransport = Guest.RSVPData.OwnTransport;
                 }
 
                 SelectedSoloOptions = [.. FilterValidDiets(Request.Form["SelectedSoloOptions"]).Split(',', StringSplitOptions.RemoveEmptyEntries)];
