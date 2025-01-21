@@ -12,11 +12,11 @@
             <div class="col-lg-4 justify-content-center">
                 @if (Model.Guest.RSVPData != null)
                 {
-                    <h4>Din RSVP Information</h4>
+                    <h4>Din O.S.A Information</h4>
                 }
                 else
                 {
-                    <h4>Du har inte skickat in din RSVP än</h4>
+                    <h4>Du har inte skickat in din O.S.A än</h4>
                 }
                 <hr />
                 <div class="form-check">
@@ -54,10 +54,10 @@
                 <div class="clearfix"></div>
                 <p>Jag är / har:</p>
                 <div class="text-left">
-                    @foreach(var item in Model.AvailableSoloOptions)
+                    @foreach (var item in Model.AvailableSoloOptions)
                     {
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="@item.value" id="@item.value" name="SelectedSoloOptions" @(Model.SelectedSoloOptions.Contains(item.value) ? "checked": "")>
+                            <input class="form-check-input" type="checkbox" value="@item.value" id="@item.value" name="SelectedSoloOptions" @(Model.SelectedSoloOptions.Contains(item.value) ? "checked" : "")>
                             <label class="form-check-label" for="@item.value">
                                 @item.text
                             </label>
@@ -81,7 +81,24 @@
                     }
                 </div>
                 <hr />
-                <button type="submit" class="btn btn-primary">Skicka RSVP</button>
+                <p>
+                    Vi är asglada att kunna dela den här underbara dagen med er.
+                    För att göra vårt bröllop så fint och minnesvärt som möjligt har vi valt att lägga ett särskilt fokus på maten och festligheterna.
+                    Därför ber vi vänligt om ett bidrag på 150 kr per person för att hjälpa oss att täcka en liten del av dessa kostnader.
+                </p>
+                <p>
+                    Det är självklart inget krav, men vi skulle vara väldigt tacksamma om ni vill vara med och bidra till firandet :)
+                </p>
+                <p>Vi ser fram emot att fira tillsammans med er!</p>
+                <p>Nummer för Swish: 0737753074 eller 0708679778</p>
+                <p>
+                    Konto för banköverföring<br />
+                    Bank: SBAB<br />
+                    Clearing: 9252<br />
+                    Konto: 8900279
+                </p>
+                <hr />
+                <button type="submit" class="btn btn-primary">Spara uppgifter</button>
             </div>
         </div>
     </form>
