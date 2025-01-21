@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 wedding.db*
+
+wedding-site.environment.json

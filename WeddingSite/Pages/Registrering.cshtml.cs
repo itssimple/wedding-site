@@ -44,7 +44,7 @@ namespace WeddingSite.Pages
 
             HttpContext.Session.Set("guest_loggedin", guest);
 
-            return RedirectToPage("/Profile");
+            return RedirectToPage("/Profil");
         }
     }
 }
