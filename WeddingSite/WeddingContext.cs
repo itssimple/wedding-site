@@ -10,10 +10,10 @@ namespace WeddingSite
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Guest>()
-                .Property(g => g.GuestId).ValueGeneratedOnAdd().HasAnnotation("Sqlite:Autoincrement", true);
+                .Property(g => g.GuestId).ValueGeneratedOnAdd();
 
             modelBuilder.Entity<RSVP>()
-                .Property(r => r.RSVPId).ValueGeneratedOnAdd().HasAnnotation("Sqlite:Autoincrement", true);
+                .Property(r => r.RSVPId).ValueGeneratedOnAdd();
         }
     }
 
@@ -49,5 +49,6 @@ namespace WeddingSite
         public string? DietaryRequirements { get; set; }
         public string? DietaryOptions { get; set; }
         public string? Message { get; set; }
+        public bool OwnTransport { get; set; }
     }
 }

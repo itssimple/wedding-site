@@ -3,10 +3,14 @@ using WeddingSite;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddJsonFile(builder.Configuration["ConfigFile"] ?? "wedding-site.report.environment.json");
+
+var connectionString = builder.Configuration["Database:ConnectionString"];
+
 builder.Services.AddDbContext<WeddingContext>(options =>
     options
         .UseLazyLoadingProxies()
-        .UseSqlite(builder.Configuration.GetConnectionString("WeddingDatabase"))
+        .UseSqlServer(connectionString)
         .LogTo(Console.WriteLine));
 
 // Add services to the container.
@@ -29,13 +33,6 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
-}
-
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<WeddingContext>();
-    context.Database.EnsureCreated();
 }
 
 app.UseHttpsRedirection();
