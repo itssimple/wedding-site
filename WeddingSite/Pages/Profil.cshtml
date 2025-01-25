@@ -19,20 +19,18 @@
                     <h4>Du har inte skickat in din O.S.A än</h4>
                 }
                 <hr />
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="true" asp-for="Guest.RSVPData.Attending">
-                    <label class="form-check-label" asp-for="Guest.RSVPData.Attending">
-                        Jag (@Model.Guest.FirstName) kommer på bröllopet
-                    </label>
-                </div>
+                <select class="form-select" required asp-for="Guest.RSVPData.Attending" title="Du måste välja om du kommer eller inte.">
+                    <option value="">Jag kommer/kommer inte på bröllopet</option>
+                    <option value="true">Jag (@Model.Guest.FirstName) kommer på bröllopet</option>
+                    <option value="false">Jag (@Model.Guest.FirstName) kommer inte på bröllopet</option>
+                </select>
                 @if (!string.IsNullOrWhiteSpace(Model.Guest.PlusOne))
                 {
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="true" asp-for="Guest.RSVPData.PlusOneAttending">
-                        <label class="form-check-label" asp-for="Guest.RSVPData.PlusOneAttending">
-                            @Model.Guest.PlusOne (din +1) kommer på bröllopet
-                        </label>
-                    </div>
+                    <select class="form-select" required asp-for="Guest.RSVPData.PlusOneAttending" title="Du måste välja om din +1 kommer eller inte.">
+                        <option value="">@Model.Guest.PlusOne (din +1) kommer/kommer inte på bröllopet</option>
+                        <option value="true">@Model.Guest.PlusOne (din +1) kommer på bröllopet</option>
+                        <option value="false">@Model.Guest.PlusOne (din +1) kommer inte på bröllopet</option>
+                    </select>
                 }
                 <hr />
                 <div class="form-check">
