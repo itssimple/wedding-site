@@ -42,7 +42,7 @@ namespace WeddingSite.Pages
             if (guest == null)
             {
                 TempData["ErrorMessage"] = "Du måste fylla i din inbjudningskod för att se din profil";
-                return RedirectToPage("/Registrering");
+                return RedirectToPage("~/Register");
             }
 
             Guest = await db.Guests.FirstOrDefaultAsync(g => g.GuestId == guest.GuestId);
@@ -50,7 +50,7 @@ namespace WeddingSite.Pages
             if (Guest == null)
             {
                 TempData["ErrorMessage"] = "Du måste fylla i din inbjudningskod för att se din profil";
-                return RedirectToPage("/Registrering");
+                return RedirectToPage("~/Register");
             }
 
             var dietaryOptions = Guest.RSVPData?.DietaryOptions?.Split(',', StringSplitOptions.RemoveEmptyEntries) ?? [];
@@ -96,7 +96,7 @@ namespace WeddingSite.Pages
             if (guest == null)
             {
                 TempData["ErrorMessage"] = "Du måste fylla i din inbjudningskod för att se din profil";
-                return RedirectToPage("/Registrering");
+                return RedirectToPage("~/Register");
             }
 
             // To get updated data, since we don't update the session after login
