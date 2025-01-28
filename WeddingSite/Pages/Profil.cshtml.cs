@@ -109,6 +109,7 @@ namespace WeddingSite.Pages
                 if (guest.RSVPData == null)
                 {
                     guest.RSVPData = Guest.RSVPData;
+                    guest.RSVPData.RSVPDate = DateTimeOffset.Now;
                     guest.RSVPData.GuestId = guest.GuestId;
                 }
                 else
@@ -119,6 +120,11 @@ namespace WeddingSite.Pages
                     guest.RSVPData.DietaryRequirements = Guest.RSVPData.DietaryRequirements;
                     guest.RSVPData.Message = Guest.RSVPData.Message;
                     guest.RSVPData.OwnTransport = Guest.RSVPData.OwnTransport;
+
+                    if (!guest.RSVPData.RSVPDate.HasValue)
+                    {
+                        guest.RSVPData.RSVPDate = DateTimeOffset.Now;
+                    }
                 }
 
                 SelectedSoloOptions = [.. FilterValidDiets(Request.Form["SelectedSoloOptions"]).Split(',', StringSplitOptions.RemoveEmptyEntries)];
