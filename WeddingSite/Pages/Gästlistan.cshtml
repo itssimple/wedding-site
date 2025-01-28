@@ -14,6 +14,7 @@
                 <th>Egen transport</th>
                 <th>Mat-saker</th>
                 <th>Meddelande</th>
+                <th>Inskickat</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
                     </td>
                     <td>@string.Join(",", guest.DietaryOptions)</td>
                     <td>@guest.Message</td>
+                    <td>@(guest.RSVPDate.HasValue ? guest.RSVPDate.Value.LocalDateTime.ToShortDateString() : Html.Raw("<i>Okänt</i>"))</td>
                 </tr>
             }
         </tbody>

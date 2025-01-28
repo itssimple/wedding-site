@@ -33,7 +33,8 @@ namespace WeddingSite.Pages
                                       r.PlusOneAttending,
                                       r.DietaryOptions,
                                       r.Message,
-                                      r.OwnTransport
+                                      r.OwnTransport,
+                                      r.RSVPDate
                                   )).ToList();
 
             GuestsWithRsvp = guestsWithRsvp;
@@ -42,5 +43,5 @@ namespace WeddingSite.Pages
         }
     }
 
-    public record GuestRsvpRecord(string FirstName, string LastName, string? PlusOne, bool? Attending, bool? PlusOneAttending, string? DietaryOptions, string? Message, bool OwnTransport);
+    public record GuestRsvpRecord(string FirstName, string LastName, string? PlusOne, bool? Attending, bool? PlusOneAttending, string? DietaryOptions, string? Message, bool OwnTransport, DateTimeOffset? RSVPDate);
 }
