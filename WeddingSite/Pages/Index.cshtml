@@ -9,7 +9,14 @@
     <hr />
     <img class="img-fluid" src="~/images/IMG_8214.jpeg" />
     <p>Hjärtligt välkomna till vår bröllopssite, och tack för att ni vill vara med oss på den bästa dagen i våra liv.</p>
-    <p>Här kommer man senare kunna lämna OSA och läsa alla detaljer om vigseln och festen.</p>
+    @if (HttpContext.Session.Get<Guest>("guest_loggedin") == null)
+    {
+        <p>Här kan man <a asp-area="" asp-page="/Register">lämna OSA</a> och läsa alla detaljer om vigseln och festen.</p>
+    }
+    else
+    {
+        <p>Här kan du <a asp-area="" asp-page="/Profil">redigera din OSA</a> och läsa alla detaljer om vigseln och festen.</p>
+    }
     <p>Dessa dyker upp allteftersom under fliken "Information" för att göra det enkelt för er som vill gästa vårt bröllop.</p>
     <p>Och ifall ni har några frågor, så kan ni kontakta Sol eller Chris, så hjälper vi till så gott vi kan!</p>
 </div>
