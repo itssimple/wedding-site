@@ -2,6 +2,25 @@
 @model WeddingSite.Pages.GästlistanModel
 @{
     ViewData["Title"] = "Gästlistan";
+
+    var DietOptions = new List<(string text, string value)> {
+        ("Vegan", "vegan"),
+        ("Gluten (allergi eller intolerans)", "gluten"),
+        ("Laktos (allergi eller intolerans)", "lactose"),
+        ("Nötallergi", "nuts"),
+        ("Soja (allergi eller intolerans)", "soy"),
+        ("Baljväxter (t.ex. ärtor, linser)", "baljvaxt"),
+        ("Citrus (allergi eller intolerans)", "citrus"),
+        ("Annat", "other"),
+        ("+1 Vegan", "plus_vegan"),
+        ("+1 Gluten (allergi eller intolerans)", "plus_gluten"),
+        ("+1 Laktos (allergi eller intolerans)", "plus_lactose"),
+        ("+1 Nötallergi", "plus_nuts"),
+        ("+1 Soja (allergi eller intolerans)", "plus_soy"),
+        ("+1 Baljväxter (t.ex. ärtor, linser)", "plus_baljvaxt"),
+        ("+1 Citrus (allergi eller intolerans)", "plus_citrus"),
+        ("+1 Annat", "plus_other")
+    };
 }
 <div class="text-center">
     <h1 class="display-4 tenor-sans-regular">Gästlistan (eller vilka som skickat in O.S.A)</h1>
@@ -20,6 +39,8 @@
         <tbody>
             @foreach (var guest in Model.GuestsWithRsvp)
             {
+                var diet = guest.DietaryOptions?.Split(',') ?? [];
+                var formatted_diet = Html.Raw(string.Join(", ", DietOptions.Where(k => diet.Any(i => i == k.value)).Select(i => $"<kbd>{i.text}</kbd>")));
                 <tr>
                     <td>
                         @guest.FirstName @guest.LastName (@(guest.Attending.HasValue && guest.Attending.Value ? "Kommer" : "Kommer inte"))
@@ -32,7 +53,7 @@
                     <td>
                         @(guest.OwnTransport ? "Ja" : "Nej")
                     </td>
-                    <td>@string.Join(",", guest.DietaryOptions)</td>
+                    <td>@formatted_diet @(formatted_diet.ToString().Length > 0 ? Html.Raw("<br />") : null)@guest.DietaryRequirements</td>
                     <td>@guest.Message</td>
                     <td>@(guest.RSVPDate.HasValue ? guest.RSVPDate.Value.LocalDateTime.ToShortDateString() : Html.Raw("<i>Okänt</i>"))</td>
                 </tr>
