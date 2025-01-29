@@ -133,6 +133,8 @@ namespace WeddingSite.Pages
                 HashSet<string> selectedOptions = [.. SelectedSoloOptions, .. SelectedPlusOptions];
 
                 guest.RSVPData.DietaryOptions = string.Join(",", selectedOptions);
+
+                TempData["SuccessMessage"] = guest.RSVPData.Attending.HasValue && guest.RSVPData.Attending.Value ? "Åh, vad kul att du kommer!" : "Åh, vad synd att du inte kan komma.\nDu kan ångra dig fram till 10:e april!";
             }
 
             db.Guests.Update(guest);

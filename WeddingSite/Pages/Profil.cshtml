@@ -18,6 +18,16 @@
                 {
                     <h4>Du har inte skickat in din O.S.A än</h4>
                 }
+                @if(TempData.ContainsKey("SuccessMessage") != null && !string.IsNullOrEmpty(TempData["SuccessMessage"]?.ToString()))
+                {
+                    var message = TempData["SuccessMessage"];
+                    TempData.Remove("SuccessMessage");
+
+                    <div class="alert alert-success" role="alert">
+                      <h4 class="alert-heading">Dina uppgifter är sparade!</h4>
+                      <p class="mb-0">@message</p>
+                    </div>
+                }
                 <hr />
                 <select class="form-select" required asp-for="Guest.RSVPData.Attending" title="Du måste välja om du kommer eller inte.">
                     <option value="">Jag kommer/kommer inte på bröllopet</option>
