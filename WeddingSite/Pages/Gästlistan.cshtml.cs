@@ -24,7 +24,7 @@ namespace WeddingSite.Pages
 
             var guestsWithRsvp = (from g in db.Guests
                                   join r in db.RSVPs on g.GuestId equals r.GuestId
-                                  orderby r.RSVPDate
+                                  orderby r.RSVPDate descending
                                   select new GuestRsvpRecord(
                                       g.FirstName,
                                       g.LastName,

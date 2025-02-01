@@ -21,15 +21,18 @@
         ("+1 Citrus (allergi eller intolerans)", "plus_citrus"),
         ("+1 Annat", "plus_other")
     };
+
+    var attendingGuests = Model.GuestsWithRsvp.Count(g => g.Attending.HasValue && g.Attending.Value) + Model.GuestsWithRsvp.Count(g => g.PlusOneAttending.HasValue && g.PlusOneAttending.Value);
+    var notAttendingGuests = Model.GuestsWithRsvp.Count(g => g.Attending.HasValue && !g.Attending.Value) + Model.GuestsWithRsvp.Count(g => g.PlusOneAttending.HasValue && !g.PlusOneAttending.Value);
 }
 <div class="text-center">
     <h1 class="display-4 tenor-sans-regular">Gästlistan (eller vilka som skickat in O.S.A)</h1>
     <hr />
+    Kommer: @attendingGuests Kommer inte: @notAttendingGuests
     <table class="table">
         <thead>
             <tr>
                 <th>Gäst</th>
-                <th>+1</th>
                 <th>Egen transport</th>
                 <th>Mat-saker</th>
                 <th>Meddelande</th>
@@ -44,11 +47,9 @@
                 <tr>
                     <td>
                         @guest.FirstName @guest.LastName (@(guest.Attending.HasValue && guest.Attending.Value ? "Kommer" : "Kommer inte"))
-                    </td>
-                    <td>
-                        @(!string.IsNullOrEmpty(guest.PlusOne) ?
-                            $"{guest.PlusOne} ({(guest.PlusOneAttending.HasValue && guest.PlusOneAttending.Value ? "Kommer" : "Kommer inte")})" :
-                            string.Empty)
+                        @Html.Raw(!string.IsNullOrEmpty(guest.PlusOne) ?
+    $"<br />{guest.PlusOne} ({(guest.PlusOneAttending.HasValue && guest.PlusOneAttending.Value ? "Kommer" : "Kommer inte")})" :
+    string.Empty)
                     </td>
                     <td>
                         @(guest.OwnTransport ? "Ja" : "Nej")
