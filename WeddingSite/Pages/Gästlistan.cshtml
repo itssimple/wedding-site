@@ -24,11 +24,13 @@
 
     var attendingGuests = Model.GuestsWithRsvp.Count(g => g.Attending.HasValue && g.Attending.Value) + Model.GuestsWithRsvp.Count(g => g.PlusOneAttending.HasValue && g.PlusOneAttending.Value);
     var notAttendingGuests = Model.GuestsWithRsvp.Count(g => g.Attending.HasValue && !g.Attending.Value) + Model.GuestsWithRsvp.Count(g => g.PlusOneAttending.HasValue && !g.PlusOneAttending.Value);
+
+    var minimumGuests = 63;
 }
 <div class="text-center">
     <h1 class="display-4 tenor-sans-regular">Gästlistan (eller vilka som skickat in O.S.A)</h1>
     <hr />
-    Kommer: @attendingGuests Kommer inte: @notAttendingGuests
+    Kommer: @attendingGuests Kommer inte: @notAttendingGuests<br />Kvar till minsta antal: @(minimumGuests - attendingGuests) (Vi har sagt 70 till Flottsbro, och vi kan ha 10% färre)
     <table class="table">
         <thead>
             <tr>
