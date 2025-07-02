@@ -77,21 +77,23 @@ body {
 }
 
     .guest-seat:first-child {
-        border-top: 1px solid black;
+        border-top: 1px solid black !important;
         border-left: 1px solid black;
+    }
 
+    .guest-seat:nth-child(2) {
+        border-top: 1px solid black !important;
     }
 
     .guest-seat:nth-child(odd) {
-        border-top: 1px black solid;
+        border-top: 1px #c9c9c9 solid;
         border-left: 1px black solid;
         border-right: 1px solid #c9c9c9;
     }
 
     .guest-seat:nth-child(even) {
-        border-top: 1px black solid;
+        border-top: 1px #c9c9c9 solid;
         border-right: 1px black solid;
-        border-top: 1px black solid;
     }
 
     .guest-seat:last-child {
@@ -108,4 +110,16 @@ body {
     .guest-seat-tables {
         gap: 0px 0px;
     }
+}
+
+[data-guestid] {
+    transition-property: all;
+    transition-duration: 1s;
+    background-color: unset;
+}
+
+.mark-guest {
+    transition-duration: 1s;
+    transition-property: all;
+    background-color: #ff4242;
 }
