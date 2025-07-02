@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WeddingSite
 {
@@ -6,6 +7,7 @@ namespace WeddingSite
     {
         public required DbSet<Guest> Guests { get; set; }
         public required DbSet<RSVP> RSVPs { get; set; }
+        public required DbSet<SeatingInfo> SeatingInfo { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -14,15 +16,18 @@ namespace WeddingSite
 
             modelBuilder.Entity<RSVP>()
                 .Property(r => r.RSVPId).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<SeatingInfo>()
+                .Property(s => s.SeatingId).ValueGeneratedOnAdd();
         }
     }
 
     public class Guest
     {
-        public int GuestId {  get; set; }
-        public required string FirstName {  get; set; }
+        public int GuestId { get; set; }
+        public required string FirstName { get; set; }
         public required string LastName { get; set; }
-        public string? Email {  get; set;}
+        public string? Email { get; set; }
         public string? PlusOne { get; set; }
         public required string Address { get; set; }
         public required string PostCode { get; set; }
@@ -50,5 +55,17 @@ namespace WeddingSite
         public string? DietaryOptions { get; set; }
         public string? Message { get; set; }
         public bool OwnTransport { get; set; }
+    }
+
+    [Table("SeatingInfo")]
+    [PrimaryKey("SeatingId")]
+    public class SeatingInfo
+    {
+        public int SeatingId { get; set; }
+        public int GuestId { get; set; }
+        public int TableNumber { get; set; }
+        public int SeatNumber { get; set; }
+
+        public virtual Guest GuestInfo { get; set; } = null!;
     }
 }

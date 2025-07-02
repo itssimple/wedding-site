@@ -30,3 +30,82 @@ body {
 .text-left {
     text-align: left;
 }
+
+.wedding-table {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.honor-table {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 5rem;
+}
+
+.honor-seat {
+
+}
+
+.guest-table {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.guest-seat-tables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". ."
+        ". ."
+        ". ."
+        ". ."
+        ". .";
+    align-items: center;
+}
+
+.guest-seat {
+    height: 4rem;
+    align-content: center;
+}
+
+    .guest-seat:first-child {
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+
+    }
+
+    .guest-seat:nth-child(odd) {
+        border-top: 1px black solid;
+        border-left: 1px black solid;
+        border-right: 1px solid #c9c9c9;
+    }
+
+    .guest-seat:nth-child(even) {
+        border-top: 1px black solid;
+        border-right: 1px black solid;
+        border-top: 1px black solid;
+    }
+
+    .guest-seat:last-child {
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+    }
+
+    .guest-seat:nth-last-child(2) {
+        border-bottom: 1px solid black;
+        border-left: 1px solid black;
+    }
+
+@media (min-width: 768px) {
+    .guest-seat-tables {
+        gap: 0px 0px;
+    }
+}

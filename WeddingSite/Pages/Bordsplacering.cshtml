@@ -1,0 +1,87 @@
+﻿@page
+@using System.Text.Json
+@model WeddingSite.Pages.BordsplaceringModel
+@{
+    ViewData["Title"] = "Bordsplacering";
+}
+<div class="text-center">
+    <h1 class="display-4 tenor-sans-regular">Bordsplacering</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md">
+            @if (Model.SeatingList.Count == 0)
+            {
+                <p>För att se den här sidan, behöver du ange koden som finns intill QR-koden.</p>
+                <form method="post">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 col-sm-10">
+                            <label asp-for="SecretCode" class="control-label">Fyll i koden (6 tecken)</label>
+                            <input asp-for="SecretCode" required class="form-control text-center" maxlength="6" placeholder="123123" type="number" />
+                            <span asp-validation-for="SecretCode" class="text-danger"></span>
+                            <br />
+
+                        </div>
+                    </div>
+                    <div class="d-grid d-block d-lg-inline-block">
+                        <button type="submit" class="btn btn-primary">Visa platserna</button>
+                    </div>
+                </form>
+            }
+            else
+            {
+                var honorTableGuests = Model.SeatingList.Where(g => g.TableNumber == 0).OrderBy(g => g.SeatNumber).ToList();
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>
+                                <div class="wedding-table">
+                                    <div class="honor-table">
+                                        @foreach (var honorGuest in honorTableGuests)
+                                        {
+                                            <div class="honor-seat">@honorGuest.PersonName.Split(' ')[0]</div>
+                                        }
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="wedding-table">
+                                    <div class="guest-table">
+                                        @for(var i = 1; i <= 4; i++)
+                                        {
+                                            <div class="row">
+                                            <div class="guest-table-header">
+                                                Bord @i
+                                            </div>
+                                            <div class="guest-seat-tables">
+                                                @for(var x = 1; x <= 16; x++)
+                                                {
+                                                    var guest = Model.SeatingList.FirstOrDefault(ix => ix.TableNumber == i && ix.SeatNumber == x);
+                                                    if(guest != null)
+                                                    {
+                                                        var gName = guest.PersonName.Split(' ');
+                                                        var showName = gName[0] + " " + string.Join(" ", gName.Skip(1).Select(k => k[0]));
+                                                        <div class="guest-seat">
+                                                                <div class="d-sm-block d-md-none">@gName[0]</div>
+                                                            <div class="d-none d-md-block">@showName</div>
+                                                        </div>
+                                                    }
+
+                                                }
+                                            </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
