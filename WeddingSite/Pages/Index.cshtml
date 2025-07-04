@@ -11,7 +11,7 @@
     <p>Hjärtligt välkomna till vår bröllopssite, och tack för att ni vill vara med oss på den bästa dagen i våra liv.</p>
     @if (HttpContext.Session.Get<Guest>("guest_loggedin") == null)
     {
-        <p>Här kan man <a asp-area="" asp-page="/Register">lämna OSA</a> och läsa alla detaljer om vigseln och festen.</p>
+        <p>Här kan man <a asp-area="" asp-page="/Bordsplacering">titta på bordsplaceringen</a>, och läsa alla detaljer om vigseln och festen.</p>
     }
     else
     {

@@ -27,6 +27,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Hem</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Bordsplacering">Bordsplacering</a>
+                        </li>
+                        @* <li class="nav-item">
                             @if (Context.Session.Get<Guest>("guest_loggedin") == null)
                             {
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Register">Registrering</a>
@@ -35,7 +38,7 @@
                             {
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Profil">Min profil / Anmälan</a>
                             }
-                        </li>
+                        </li> *@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark" role="button" data-bs-toggle="dropdown" href="#" aria-expanded="false" id="infoLink">Information</a>
                             <ul class="dropdown-menu" aria-labelledby="infoLink">
