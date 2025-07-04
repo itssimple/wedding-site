@@ -13,13 +13,6 @@ namespace WeddingSite.Pages
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var viewTableSession = HttpContext.Session.Get<bool>("view_table");
-
-            if (!viewTableSession)
-            {
-                return Page();
-            }
-
             SeatingList = [.. GetSeatingInfo()];
 
             return Page();
@@ -84,27 +77,6 @@ namespace WeddingSite.Pages
                 GuestId = -2,
                 PlusOne = false
             };
-        }
-
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (string.IsNullOrWhiteSpace(SecretCode) || SecretCode.Length < 6)
-            {
-                ModelState.AddModelError("SecretCode", "Koden måste vara minst 6 tecken lång");
-                return Page();
-            }
-
-            if (SecretCode != configuration["SeatingList:Code"])
-            {
-                ModelState.AddModelError("SecretCode", "Koden är inte giltig");
-                return Page();
-            }
-
-            HttpContext.Session.Set("view_table", true);
-
-            SeatingList = [.. GetSeatingInfo()];
-
-            return Page();
         }
     }
 }
