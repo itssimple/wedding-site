@@ -13,7 +13,7 @@
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
         if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
-            countDownElement.innerHTML = "";
+            countDownElement.innerHTML = "🎉🥳🎉";
             clearInterval(interval);
             return;
         }
